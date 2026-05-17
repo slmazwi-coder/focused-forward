@@ -127,7 +127,7 @@ function Staff() {
         <p className="mx-auto mt-2 max-w-xl text-center text-sm text-muted-foreground">
           Principal, deputy principal and heads of department
         </p>
-        <div className="mt-10 grid gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+        <div className="mt-10 grid justify-items-center gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {leadership.map((m) => (
             <StaffCard key={m.name} member={m} />
           ))}
@@ -142,7 +142,7 @@ function Staff() {
           <p className="mx-auto mt-2 max-w-xl text-center text-sm text-muted-foreground">
             Specialist educators across all phases and subjects
           </p>
-          <div className="mt-10 grid gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+          <div className="mt-10 grid justify-items-center gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {teaching.map((m) => (
               <StaffCard key={m.name} member={m} />
             ))}
@@ -155,7 +155,7 @@ function Staff() {
         <p className="mx-auto mt-2 max-w-xl text-center text-sm text-muted-foreground">
           Keeping our campus clean, safe and beautiful
         </p>
-        <div className="mt-10 grid gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+        <div className="mt-10 grid justify-items-center gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {support.map((m) => (
             <StaffCard key={m.name} member={m} />
           ))}
