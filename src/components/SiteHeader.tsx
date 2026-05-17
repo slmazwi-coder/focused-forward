@@ -11,6 +11,8 @@ const nav = [
   { to: "/sports", label: "Sport" },
   { to: "/news", label: "News" },
   { to: "/admissions", label: "Admissions" },
+  { to: "/fees", label: "Fees" },
+  { to: "/shop", label: "Shop" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -23,8 +25,12 @@ export function SiteHeader() {
         <Link to="/" className="flex items-center gap-3">
           <img src={logo} alt="Focused Combined School crest" className="h-12 w-auto" />
           <div className="leading-tight">
-            <div className="font-display text-lg font-semibold text-primary">Focused Combined School</div>
-            <div className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">Deo Volenté · Matatiele</div>
+            <div className="font-display text-lg font-semibold text-primary">
+              Focused Combined School
+            </div>
+            <div className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+              Deo Volenté · Matatiele
+            </div>
           </div>
         </Link>
         <nav className="hidden items-center gap-1 lg:flex">
@@ -33,14 +39,16 @@ export function SiteHeader() {
               key={n.to}
               to={n.to}
               className="rounded-md px-3 py-2 text-sm font-medium text-foreground/80 transition hover:bg-secondary hover:text-primary"
-              activeProps={{ className: "rounded-md px-3 py-2 text-sm font-semibold text-primary bg-secondary" }}
+              activeProps={{
+                className: "rounded-md px-3 py-2 text-sm font-semibold text-primary bg-secondary",
+              }}
               activeOptions={{ exact: n.to === "/" }}
             >
               {n.label}
             </Link>
           ))}
           <Link
-            to="/admissions"
+            to="/apply"
             className="ml-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
           >
             Apply
@@ -63,7 +71,9 @@ export function SiteHeader() {
                 to={n.to}
                 onClick={() => setOpen(false)}
                 className="rounded-md px-3 py-2 text-sm font-medium text-foreground/80 hover:bg-secondary"
-                activeProps={{ className: "rounded-md px-3 py-2 text-sm font-semibold text-primary bg-secondary" }}
+                activeProps={{
+                  className: "rounded-md px-3 py-2 text-sm font-semibold text-primary bg-secondary",
+                }}
                 activeOptions={{ exact: n.to === "/" }}
               >
                 {n.label}
