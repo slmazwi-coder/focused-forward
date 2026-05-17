@@ -12,8 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as StaffRouteImport } from './routes/staff'
 import { Route as SportsRouteImport } from './routes/sports'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ShopRouteImport } from './routes/shop'
 import { Route as NewsRouteImport } from './routes/news'
+import { Route as FeesRouteImport } from './routes/fees'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ApplyRouteImport } from './routes/apply'
 import { Route as AdmissionsRouteImport } from './routes/admissions'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AcademicsRouteImport } from './routes/academics'
@@ -35,14 +38,29 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ShopRoute = ShopRouteImport.update({
+  id: '/shop',
+  path: '/shop',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const NewsRoute = NewsRouteImport.update({
   id: '/news',
   path: '/news',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FeesRoute = FeesRouteImport.update({
+  id: '/fees',
+  path: '/fees',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApplyRoute = ApplyRouteImport.update({
+  id: '/apply',
+  path: '/apply',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdmissionsRoute = AdmissionsRouteImport.update({
@@ -77,8 +95,11 @@ export interface FileRoutesByFullPath {
   '/academics': typeof AcademicsRoute
   '/admin': typeof AdminRoute
   '/admissions': typeof AdmissionsRoute
+  '/apply': typeof ApplyRoute
   '/contact': typeof ContactRoute
+  '/fees': typeof FeesRoute
   '/news': typeof NewsRoute
+  '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sports': typeof SportsRoute
   '/staff': typeof StaffRoute
@@ -89,8 +110,11 @@ export interface FileRoutesByTo {
   '/academics': typeof AcademicsRoute
   '/admin': typeof AdminRoute
   '/admissions': typeof AdmissionsRoute
+  '/apply': typeof ApplyRoute
   '/contact': typeof ContactRoute
+  '/fees': typeof FeesRoute
   '/news': typeof NewsRoute
+  '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sports': typeof SportsRoute
   '/staff': typeof StaffRoute
@@ -102,8 +126,11 @@ export interface FileRoutesById {
   '/academics': typeof AcademicsRoute
   '/admin': typeof AdminRoute
   '/admissions': typeof AdmissionsRoute
+  '/apply': typeof ApplyRoute
   '/contact': typeof ContactRoute
+  '/fees': typeof FeesRoute
   '/news': typeof NewsRoute
+  '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sports': typeof SportsRoute
   '/staff': typeof StaffRoute
@@ -116,8 +143,11 @@ export interface FileRouteTypes {
     | '/academics'
     | '/admin'
     | '/admissions'
+    | '/apply'
     | '/contact'
+    | '/fees'
     | '/news'
+    | '/shop'
     | '/sitemap.xml'
     | '/sports'
     | '/staff'
@@ -128,8 +158,11 @@ export interface FileRouteTypes {
     | '/academics'
     | '/admin'
     | '/admissions'
+    | '/apply'
     | '/contact'
+    | '/fees'
     | '/news'
+    | '/shop'
     | '/sitemap.xml'
     | '/sports'
     | '/staff'
@@ -140,8 +173,11 @@ export interface FileRouteTypes {
     | '/academics'
     | '/admin'
     | '/admissions'
+    | '/apply'
     | '/contact'
+    | '/fees'
     | '/news'
+    | '/shop'
     | '/sitemap.xml'
     | '/sports'
     | '/staff'
@@ -153,8 +189,11 @@ export interface RootRouteChildren {
   AcademicsRoute: typeof AcademicsRoute
   AdminRoute: typeof AdminRoute
   AdmissionsRoute: typeof AdmissionsRoute
+  ApplyRoute: typeof ApplyRoute
   ContactRoute: typeof ContactRoute
+  FeesRoute: typeof FeesRoute
   NewsRoute: typeof NewsRoute
+  ShopRoute: typeof ShopRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SportsRoute: typeof SportsRoute
   StaffRoute: typeof StaffRoute
@@ -183,6 +222,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/shop': {
+      id: '/shop'
+      path: '/shop'
+      fullPath: '/shop'
+      preLoaderRoute: typeof ShopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/news': {
       id: '/news'
       path: '/news'
@@ -190,11 +236,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NewsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/fees': {
+      id: '/fees'
+      path: '/fees'
+      fullPath: '/fees'
+      preLoaderRoute: typeof FeesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/apply': {
+      id: '/apply'
+      path: '/apply'
+      fullPath: '/apply'
+      preLoaderRoute: typeof ApplyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admissions': {
@@ -241,8 +301,11 @@ const rootRouteChildren: RootRouteChildren = {
   AcademicsRoute: AcademicsRoute,
   AdminRoute: AdminRoute,
   AdmissionsRoute: AdmissionsRoute,
+  ApplyRoute: ApplyRoute,
   ContactRoute: ContactRoute,
+  FeesRoute: FeesRoute,
   NewsRoute: NewsRoute,
+  ShopRoute: ShopRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SportsRoute: SportsRoute,
   StaffRoute: StaffRoute,

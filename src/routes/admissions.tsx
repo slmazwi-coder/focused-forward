@@ -7,17 +7,37 @@ export const Route = createFileRoute("/admissions")({
   head: () => ({
     meta: [
       { title: "Admissions — Focused Combined School" },
-      { name: "description", content: "How to apply to Focused Combined School in Matatiele — requirements, process and contacts." },
+      {
+        name: "description",
+        content:
+          "How to apply to Focused Combined School in Matatiele — requirements, process and contacts.",
+      },
     ],
   }),
   component: Admissions,
 });
 
 const steps = [
-  { n: "01", t: "Enquire", b: "Call the office on 039 737 3679 or email admin@focused.co.za to confirm space in your child's grade." },
-  { n: "02", t: "Visit the school", b: "Tour the campus and meet our principal. Walking the corridors is the best way to know us." },
-  { n: "03", t: "Submit the form", b: "Complete the application form and return it with the required documents to the school office." },
-  { n: "04", t: "Interview & placement", b: "A short interview with parents and learner. Offers are made subject to space and reports." },
+  {
+    n: "01",
+    t: "Enquire",
+    b: "Call the office on 039 737 3679 or email admin@focused.co.za to confirm space in your child's grade.",
+  },
+  {
+    n: "02",
+    t: "Visit the school",
+    b: "Tour the campus and meet our principal. Walking the corridors is the best way to know us.",
+  },
+  {
+    n: "03",
+    t: "Submit the form",
+    b: "Complete the online application form and upload the required documents.",
+  },
+  {
+    n: "04",
+    t: "Interview & placement",
+    b: "A short interview with parents and learner. Offers are made subject to space and reports.",
+  },
 ];
 
 const reqs = [
@@ -33,7 +53,11 @@ function Admissions() {
   const c = useContent();
   return (
     <>
-      <PageHero eyebrow="Admissions" title={c("admissions.hero.title")} subtitle={c("admissions.hero.subtitle")} />
+      <PageHero
+        eyebrow="Admissions"
+        title={c("admissions.hero.title")}
+        subtitle={c("admissions.hero.subtitle")}
+      />
 
       <section className="container mx-auto grid gap-6 px-4 py-16 md:grid-cols-2 lg:grid-cols-4">
         {steps.map((s) => (
@@ -65,11 +89,18 @@ function Admissions() {
             {c("admissions.fees.body")}
           </p>
           <div className="mt-8 space-y-2 text-sm">
-            <div>📞 <span className="font-medium">{c("admissions.fees.phone")}</span></div>
-            <div>✉️ <span className="font-medium">{c("admissions.fees.email")}</span></div>
+            <div>
+              📞 <span className="font-medium">{c("admissions.fees.phone")}</span>
+            </div>
+            <div>
+              ✉️ <span className="font-medium">{c("admissions.fees.email")}</span>
+            </div>
           </div>
-          <Link to="/contact" className="mt-8 inline-flex rounded-md bg-gold px-5 py-3 text-sm font-semibold text-gold-foreground hover:brightness-95">
-            Contact admissions
+          <Link
+            to="/apply"
+            className="mt-8 inline-flex rounded-md bg-gold px-5 py-3 text-sm font-semibold text-gold-foreground hover:brightness-95"
+          >
+            Apply online
           </Link>
         </div>
       </section>

@@ -18,6 +18,7 @@ import caswell from "@/assets/staff/caswell.jpg";
 import kabi from "@/assets/staff/kabi.jpg";
 import makananelo from "@/assets/staff/makananelo.jpg";
 import thulani from "@/assets/staff/thulani.jpg";
+import aMkolokotho from "@/assets/staff/a-mkolokotho.jpg";
 import principal from "@/assets/principal.jpg";
 
 export const Route = createFileRoute("/staff")({
@@ -42,18 +43,53 @@ interface StaffMember {
 }
 
 const staff: StaffMember[] = [
-  { name: "Mr. L Van Rooyen", roles: ["Principal", "Mathematics"], photo: principal, category: "leadership" },
-  { name: "Mr. P Van Der Watt", roles: ["Deputy Principal", "Mathematics Literacy"], photo: pVanDerWatt, category: "leadership" },
-  { name: "Mrs. E Van Rooyen", roles: ["HOD", "Life Sciences", "Natural Science"], photo: eVanRooyen, category: "leadership" },
-  { name: "Mr. M Scheepers", roles: ["HOD", "Mathematics"], photo: mScheepers, category: "leadership" },
+  {
+    name: "Mr. L Van Rooyen",
+    roles: ["Principal", "Mathematics"],
+    photo: principal,
+    category: "leadership",
+  },
+  {
+    name: "Mr. P Van Der Watt",
+    roles: ["Deputy Principal", "Mathematics Literacy"],
+    photo: pVanDerWatt,
+    category: "leadership",
+  },
+  {
+    name: "Mrs. E Van Rooyen",
+    roles: ["HOD", "Life Sciences", "Natural Science"],
+    photo: eVanRooyen,
+    category: "leadership",
+  },
+  {
+    name: "Mr. M Scheepers",
+    roles: ["HOD", "Mathematics"],
+    photo: mScheepers,
+    category: "leadership",
+  },
   { name: "Mrs. J Joubert", roles: ["HOD", "Grade 2"], photo: jJoubert, category: "leadership" },
   { name: "Mrs. T Kani", roles: ["EMS", "Business Studies"], photo: tKani, category: "teaching" },
-  { name: "Mr. P Khuphe", roles: ["Economics", "Accounting"], photo: pKhuphe, category: "teaching" },
+  {
+    name: "Mr. P Khuphe",
+    roles: ["Economics", "Accounting"],
+    photo: pKhuphe,
+    category: "teaching",
+  },
   { name: "Mr. L Kani", roles: ["Physics", "Mathematics"], photo: lKani, category: "teaching" },
-  { name: "Mrs. V McGregor", roles: ["Grade R", "Pre-School"], photo: vMcgregor, category: "teaching" },
+  {
+    name: "Mrs. V McGregor",
+    roles: ["Grade R", "Pre-School"],
+    photo: vMcgregor,
+    category: "teaching",
+  },
   { name: "Mre. H Scheepers", roles: ["Afrikaans"], photo: hScheepers, category: "teaching" },
   { name: "Mrs. S Van Der Watt", roles: ["Grade 1"], photo: sVanDerWatt, category: "teaching" },
-  { name: "Mrs. A Mkolokotho", roles: ["Technology", "Natural Science"], category: "teaching" },
+  {
+    name: "Mrs. A Mkolokotho",
+    roles: ["Technology", "Natural Science"],
+    photo: aMkolokotho,
+    category: "teaching",
+  },
   { name: "Mr. W Wessels", roles: ["History", "Geography"], photo: wWessels, category: "teaching" },
   { name: "Mrs. P Vollenhoven", roles: ["English"], photo: pVollenhoven, category: "teaching" },
   { name: "Miss T Heyneke", roles: ["Grade 3"], category: "teaching" },
@@ -81,11 +117,7 @@ function StaffCard({ member }: { member: StaffMember }) {
     <div className="group text-center">
       <div className="mx-auto mb-4 h-40 w-40 overflow-hidden rounded-full border-4 border-gold bg-primary shadow-lg transition group-hover:scale-105 group-hover:shadow-xl">
         {member.photo ? (
-          <img
-            src={member.photo}
-            alt={member.name}
-            className="h-full w-full object-cover"
-          />
+          <img src={member.photo} alt={member.name} className="h-full w-full object-cover" />
         ) : (
           <div className="flex h-full w-full items-center justify-center text-3xl font-bold text-gold">
             {initials}
@@ -121,9 +153,7 @@ function Staff() {
       />
 
       <section className="container mx-auto px-4 py-16">
-        <h2 className="text-center font-display text-3xl">
-          School Leadership
-        </h2>
+        <h2 className="text-center font-display text-3xl">School Leadership</h2>
         <p className="mx-auto mt-2 max-w-xl text-center text-sm text-muted-foreground">
           Principal, deputy principal and heads of department
         </p>
@@ -136,9 +166,7 @@ function Staff() {
 
       <section className="bg-secondary/40">
         <div className="container mx-auto px-4 py-16">
-          <h2 className="text-center font-display text-3xl">
-            Teaching Staff
-          </h2>
+          <h2 className="text-center font-display text-3xl">Teaching Staff</h2>
           <p className="mx-auto mt-2 max-w-xl text-center text-sm text-muted-foreground">
             Specialist educators across all phases and subjects
           </p>
