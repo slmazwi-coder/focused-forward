@@ -7,32 +7,84 @@ execSync("bun run build", { stdio: "inherit" });
 
 // 2. Create Vercel Build Output API v3 structure
 const out = ".vercel/output";
+const funcDir = join(out, "functions", "_ssr.func");
 mkdirSync(join(out, "static"), { recursive: true });
-mkdirSync(join(out, "functions", "_ssr.func"), { recursive: true });
+mkdirSync(funcDir, { recursive: true });
 
-// 3. Copy client assets → static
+// 3. Copy client assets to static directory
 cpSync("dist/client", join(out, "static"), { recursive: true });
 
-// 4. Copy server bundle → edge function
-cpSync("dist/server", join(out, "functions", "_ssr.func"), { recursive: true });
+// 4. Copy server bundle into the serverless function directory
+cpSync("dist/server", funcDir, { recursive: true });
 
-// 5. Create edge-function entry that delegates to the TanStack Start server
+// 5. Create Node.js serverless function entry (req/res → fetch adapter)
 writeFileSync(
-  join(out, "functions", "_ssr.func", "index.js"),
+  join(funcDir, "index.mjs"),
   `import server from './server.js';
-export default async function handler(request) {
-  return server.fetch(request, {}, {});
+
+export default async function handler(req, res) {
+  const protocol = req.headers['x-forwarded-proto'] || 'https';
+  const host = req.headers['x-forwarded-host'] || req.headers.host || 'localhost';
+  const url = new URL(req.url || '/', protocol + '://' + host);
+
+  const headers = new Headers();
+  for (const [key, value] of Object.entries(req.headers)) {
+    if (value) headers.set(key, Array.isArray(value) ? value.join(', ') : value);
+  }
+
+  const body =
+    req.method !== 'GET' && req.method !== 'HEAD'
+      ? await new Promise((resolve, reject) => {
+          const chunks = [];
+          req.on('data', (c) => chunks.push(c));
+          req.on('end', () => resolve(Buffer.concat(chunks)));
+          req.on('error', reject);
+        })
+      : undefined;
+
+  const request = new Request(url.href, {
+    method: req.method,
+    headers,
+    body,
+    duplex: 'half',
+  });
+
+  const response = await server.fetch(request, {}, {});
+
+  res.statusCode = response.status;
+  for (const [key, value] of response.headers.entries()) {
+    res.setHeader(key, value);
+  }
+
+  if (response.body) {
+    const reader = response.body.getReader();
+    const pump = async () => {
+      while (true) {
+        const { done, value: chunk } = await reader.read();
+        if (done) break;
+        res.write(chunk);
+      }
+      res.end();
+    };
+    await pump();
+  } else {
+    res.end(await response.text());
+  }
 }
 `,
 );
 
-// 6. Mark the function as an edge function
+// 6. Configure as Node.js serverless function
 writeFileSync(
-  join(out, "functions", "_ssr.func", ".vc-config.json"),
-  JSON.stringify({ runtime: "edge", entrypoint: "index.js" }),
+  join(funcDir, ".vc-config.json"),
+  JSON.stringify({
+    runtime: "nodejs22.x",
+    handler: "index.mjs",
+    launcherType: "Nodejs",
+  }),
 );
 
-// 7. Routing config: serve static files first, SSR everything else
+// 7. Routing: serve static files first, then SSR everything else
 writeFileSync(
   join(out, "config.json"),
   JSON.stringify(
@@ -48,4 +100,4 @@ writeFileSync(
   ),
 );
 
-console.log("Vercel Build Output API v3 structure created.");
+console.log("Vercel Build Output API v3 structure created (Node.js runtime).");
