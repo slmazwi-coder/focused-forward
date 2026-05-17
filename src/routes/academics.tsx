@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "./about";
+import { useContent } from "@/lib/content-context";
 
 export const Route = createFileRoute("/academics")({
   head: () => ({
@@ -39,9 +40,10 @@ const phases = [
 ];
 
 function Academics() {
+  const c = useContent();
   return (
     <>
-      <PageHero eyebrow="Academics" title="Four phases. One standard: excellence." subtitle="Our curriculum runs from Grade R through to Grade 12, with phase specialists at every level." />
+      <PageHero eyebrow="Academics" title={c("academics.hero.title")} subtitle={c("academics.hero.subtitle")} />
       <section className="container mx-auto space-y-6 px-4 py-16">
         {phases.map((p, i) => (
           <article key={p.name} className="grid gap-6 rounded-2xl border border-border bg-card p-6 lg:grid-cols-12 lg:p-10">
@@ -64,8 +66,8 @@ function Academics() {
 
       <section className="container mx-auto px-4 pb-20">
         <div className="rounded-2xl bg-primary p-10 text-primary-foreground">
-          <h2 className="font-display text-3xl">Matric results</h2>
-          <p className="mt-2 max-w-2xl text-primary-foreground/80">Among the top performers in the Alfred Nzo district, year after year.</p>
+          <h2 className="font-display text-3xl">{c("academics.results.heading")}</h2>
+          <p className="mt-2 max-w-2xl text-primary-foreground/80 whitespace-pre-line">{c("academics.results.body")}</p>
           <div className="mt-8 grid grid-cols-2 gap-6 md:grid-cols-4">
             {[
               { y: "2024", v: "97.4%" },

@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import awards from "@/assets/awards.jpg";
 import rugby from "@/assets/rugby.jpg";
 import { ArrowRight, GraduationCap, Trophy, Users, Sparkles } from "lucide-react";
+import { useContent } from "@/lib/content-context";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -14,6 +15,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const c = useContent();
   return (
     <>
       {/* Hero */}
@@ -21,22 +23,20 @@ function Home() {
         <div className="container mx-auto grid items-center gap-12 px-4 py-20 lg:grid-cols-12 lg:py-28">
           <div className="lg:col-span-7">
             <div className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/5 px-3 py-1 text-xs font-medium uppercase tracking-[0.2em] text-gold">
-              <Sparkles size={14} /> Deo Volenté · Since est.
+              <Sparkles size={14} /> {c("home.hero.eyebrow")}
             </div>
             <h1 className="mt-6 font-display text-5xl leading-[1.05] sm:text-6xl lg:text-7xl">
-              Where Matatiele's <span className="text-gold">most focused</span> learners find their future.
+              {c("home.hero.title")}
             </h1>
-            <p className="mt-6 max-w-xl text-lg text-primary-foreground/85">
-              An independent combined school in the heart of the Eastern Cape — educating
-              Grade R to Grade 12 with discipline, faith and a 97–100% matric pass rate
-              year after year.
+            <p className="mt-6 max-w-xl text-lg text-primary-foreground/85 whitespace-pre-line">
+              {c("home.hero.subtitle")}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/admissions" className="inline-flex items-center gap-2 rounded-md bg-gold px-5 py-3 text-sm font-semibold text-gold-foreground transition hover:brightness-95">
-                Apply for 2026 <ArrowRight size={16} />
+                {c("home.hero.cta_primary")} <ArrowRight size={16} />
               </Link>
               <Link to="/about" className="inline-flex items-center gap-2 rounded-md border border-primary-foreground/30 px-5 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary-foreground/10">
-                Our story
+                {c("home.hero.cta_secondary")}
               </Link>
             </div>
           </div>
@@ -45,8 +45,8 @@ function Home() {
               <div className="absolute -inset-3 rounded-2xl bg-gold/30 blur-2xl" />
               <img src={awards} alt="Focused learners celebrating a national award" className="relative aspect-[4/5] w-full rounded-2xl object-cover shadow-2xl ring-1 ring-primary-foreground/20" />
               <div className="absolute -bottom-5 -left-5 rounded-xl bg-background px-5 py-4 text-foreground shadow-xl ring-1 ring-border">
-                <div className="font-display text-3xl text-primary">97.4%</div>
-                <div className="text-xs uppercase tracking-wider text-muted-foreground">Matric pass rate 2024</div>
+                <div className="font-display text-3xl text-primary">{c("home.hero.stat_value")}</div>
+                <div className="text-xs uppercase tracking-wider text-muted-foreground">{c("home.hero.stat_label")}</div>
               </div>
             </div>
           </div>
@@ -73,8 +73,8 @@ function Home() {
       {/* Pillars */}
       <section className="container mx-auto px-4 py-20">
         <div className="max-w-2xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-crimson">What we stand for</p>
-          <h2 className="mt-3 font-display text-4xl text-foreground sm:text-5xl">A school built around four things that matter.</h2>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-crimson">{c("home.pillars.eyebrow")}</p>
+          <h2 className="mt-3 font-display text-4xl text-foreground sm:text-5xl">{c("home.pillars.heading")}</h2>
         </div>
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {[
@@ -99,13 +99,10 @@ function Home() {
         <div className="container mx-auto grid items-center gap-12 px-4 py-20 lg:grid-cols-2">
           <img src={rugby} alt="Focused rugby team training" className="aspect-[4/3] w-full rounded-2xl object-cover shadow-xl" />
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-crimson">Sport at Focused</p>
-            <h2 className="mt-3 font-display text-4xl">A school with a rich, active sporting life.</h2>
-            <p className="mt-5 text-muted-foreground">
-              From the rugby field to the hockey astro, our learners compete fiercely against
-              the best in the Alfred Nzo district — including King Edward, Bergview and
-              St Patrick's College Kokstad. We believe character is built as much on the field
-              as in the classroom.
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-crimson">{c("home.feature.eyebrow")}</p>
+            <h2 className="mt-3 font-display text-4xl">{c("home.feature.heading")}</h2>
+            <p className="mt-5 text-muted-foreground whitespace-pre-line">
+              {c("home.feature.body")}
             </p>
             <Link to="/sports" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-crimson">
               Explore our sport programme <ArrowRight size={16} />
@@ -118,11 +115,10 @@ function Home() {
       <section className="container mx-auto px-4 py-20">
         <div className="rounded-3xl bg-primary px-8 py-14 text-center text-primary-foreground sm:px-16">
           <h2 className="mx-auto max-w-2xl font-display text-4xl sm:text-5xl">
-            Applications for 2026 are now open.
+            {c("home.cta.heading")}
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-primary-foreground/80">
-            Limited spaces in each grade. Visit the school, meet our principal and see why
-            families across Matatiele choose Focused.
+          <p className="mx-auto mt-4 max-w-xl text-primary-foreground/80 whitespace-pre-line">
+            {c("home.cta.body")}
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link to="/admissions" className="rounded-md bg-gold px-6 py-3 text-sm font-semibold text-gold-foreground hover:brightness-95">Start an application</Link>
