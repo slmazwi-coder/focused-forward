@@ -8,4 +8,11 @@ export default defineConfig({
   resolve: {
     dedupe: ["react", "react-dom", "@tanstack/react-router"],
   },
+  environments: {
+    ssr: {
+      resolve: {
+        noExternal: true,
+      },
+    },
+  },
 });
