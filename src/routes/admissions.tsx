@@ -59,6 +59,19 @@ function Admissions() {
         subtitle={c("admissions.hero.subtitle")}
       />
 
+      <section className="container mx-auto px-4 pt-10 pb-4 text-center">
+        <Link
+          to="/apply"
+          className="inline-flex items-center gap-2 rounded-lg bg-gold px-8 py-4 text-lg font-semibold text-gold-foreground shadow-lg transition hover:brightness-95"
+        >
+          Apply online now
+        </Link>
+        <p className="mt-3 text-sm text-muted-foreground">
+          Start your child's application in minutes — complete the form online
+          and upload documents.
+        </p>
+      </section>
+
       <section className="container mx-auto grid gap-6 px-4 py-16 md:grid-cols-2 lg:grid-cols-4">
         {steps.map((s) => (
           <div key={s.n} className="rounded-2xl border border-border bg-card p-6">
