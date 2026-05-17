@@ -74,7 +74,13 @@ export default async function handler(req, res) {
 `,
 );
 
-// 6. Configure as Node.js serverless function
+// 6. Enable ESM for the function directory (server.js uses export syntax)
+writeFileSync(
+  join(funcDir, "package.json"),
+  JSON.stringify({ type: "module" }),
+);
+
+// 7. Configure as Node.js serverless function
 writeFileSync(
   join(funcDir, ".vc-config.json"),
   JSON.stringify({
@@ -84,7 +90,7 @@ writeFileSync(
   }),
 );
 
-// 7. Routing: serve static files first, then SSR everything else
+// 8. Routing: serve static files first, then SSR everything else
 writeFileSync(
   join(out, "config.json"),
   JSON.stringify(
