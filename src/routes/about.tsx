@@ -33,7 +33,7 @@ function About() {
               <img
                 src={principal}
                 alt="Principal"
-                className="aspect-[4/5] w-full rounded-xl border-4 border-gold object-cover rotate-2"
+                className="aspect-[4/5] w-full rounded-xl border-4 border-gold object-cover"
               />
             </div>
             <div className="p-6 pt-2 text-primary-foreground">
