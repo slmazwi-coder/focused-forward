@@ -28,13 +28,19 @@ function About() {
           <p className="mt-4 text-muted-foreground whitespace-pre-line">{c("about.ethos")}</p>
         </div>
         <aside className="lg:col-span-5">
-          <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
-            <img src={principal} alt="Principal" className="aspect-[4/5] w-full object-cover" />
-            <div className="p-6">
-              <div className="text-xs font-semibold uppercase tracking-[0.2em] text-crimson">A word from the Principal</div>
-              <p className="mt-3 text-sm text-muted-foreground whitespace-pre-line">{c("about.principal.quote")}</p>
-              <div className="mt-4 font-display text-lg">{c("about.principal.name")}</div>
-              <div className="text-xs text-muted-foreground">Principal</div>
+          <div className="overflow-hidden rounded-2xl border-2 border-gold bg-primary shadow-xl">
+            <div className="p-4">
+              <img
+                src={principal}
+                alt="Principal"
+                className="aspect-[4/5] w-full rounded-xl border-4 border-gold object-cover rotate-2"
+              />
+            </div>
+            <div className="p-6 pt-2 text-primary-foreground">
+              <div className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">A word from the Principal</div>
+              <p className="mt-3 text-sm text-primary-foreground/80 whitespace-pre-line">{c("about.principal.quote")}</p>
+              <div className="mt-4 font-display text-lg text-gold">{c("about.principal.name")}</div>
+              <div className="text-xs text-primary-foreground/60">Principal</div>
             </div>
           </div>
         </aside>
