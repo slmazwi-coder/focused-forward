@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "./about";
 import { useState } from "react";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { useContent } from "@/lib/content-context";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -15,9 +16,13 @@ export const Route = createFileRoute("/contact")({
 
 function Contact() {
   const [sent, setSent] = useState(false);
+  const c = useContent();
+  const phone = c("contact.phone");
+  const email = c("contact.email");
+  const address = c("contact.address");
   return (
     <>
-      <PageHero eyebrow="Contact" title="We'd love to hear from you." subtitle="Whether you're enquiring about admissions, fees or a school tour — get in touch." />
+      <PageHero eyebrow="Contact" title={c("contact.hero.title")} subtitle={c("contact.hero.subtitle")} />
 
       <section className="container mx-auto grid gap-10 px-4 py-16 lg:grid-cols-2">
         <div>
@@ -26,22 +31,22 @@ function Contact() {
               <MapPin className="mt-0.5 text-primary" />
               <div>
                 <div className="font-semibold">Visit us</div>
-                <div className="text-sm text-muted-foreground">35 Taylor Street, Matatiele<br />Eastern Cape, 4730</div>
-                <div className="mt-1 text-xs text-muted-foreground">Postal: P.O. Box 101, Matatiele, 4730</div>
+                <div className="text-sm text-muted-foreground whitespace-pre-line">{address}</div>
+                <div className="mt-1 text-xs text-muted-foreground">{c("contact.postal")}</div>
               </div>
             </div>
             <div className="flex gap-4 rounded-xl border border-border bg-card p-5">
               <Phone className="mt-0.5 text-primary" />
               <div>
                 <div className="font-semibold">Call</div>
-                <a href="tel:+27397373679" className="text-sm text-muted-foreground hover:text-primary">039 737 3679</a>
+                <a href={`tel:${phone.replace(/\s+/g, "")}`} className="text-sm text-muted-foreground hover:text-primary">{phone}</a>
               </div>
             </div>
             <div className="flex gap-4 rounded-xl border border-border bg-card p-5">
               <Mail className="mt-0.5 text-primary" />
               <div>
                 <div className="font-semibold">Email</div>
-                <a href="mailto:admin@focused.co.za" className="text-sm text-muted-foreground hover:text-primary">admin@focused.co.za</a>
+                <a href={`mailto:${email}`} className="text-sm text-muted-foreground hover:text-primary">{email}</a>
               </div>
             </div>
           </div>
@@ -49,7 +54,7 @@ function Contact() {
           <div className="mt-6 overflow-hidden rounded-xl border border-border">
             <iframe
               title="Focused Combined School map"
-              src="https://www.google.com/maps?q=35+Taylor+Street,+Matatiele&output=embed"
+              src={`https://www.google.com/maps?q=${encodeURIComponent(address.split("\n")[0])}&output=embed`}
               className="h-72 w-full"
               loading="lazy"
             />

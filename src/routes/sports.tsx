@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "./about";
 import rugby from "@/assets/rugby.jpg";
+import { useContent } from "@/lib/content-context";
 
 export const Route = createFileRoute("/sports")({
   head: () => ({
@@ -22,19 +23,17 @@ const codes = [
 ];
 
 function Sports() {
+  const c = useContent();
   return (
     <>
-      <PageHero eyebrow="Sport & culture" title="Compete. Belong. Become." subtitle="Sport at Focused is not an extra — it is part of how we form character." />
+      <PageHero eyebrow="Sport & culture" title={c("sports.hero.title")} subtitle={c("sports.hero.subtitle")} />
 
       <section className="container mx-auto grid gap-10 px-4 py-16 lg:grid-cols-2">
         <img src={rugby} alt="Focused rugby team running drills" className="aspect-[4/3] w-full rounded-2xl object-cover shadow-xl" />
         <div className="self-center">
-          <h2 className="font-display text-3xl">A small school punching above its weight.</h2>
-          <p className="mt-4 text-muted-foreground">
-            Our learners line up against the largest and oldest schools in the region — King
-            Edward (founded 1890), St Patrick's College Kokstad, Bergview and St Monica's — and
-            hold their own. Trophies on the shelf, but more importantly, lessons in how to win
-            and lose with dignity.
+          <h2 className="font-display text-3xl">{c("sports.intro.heading")}</h2>
+          <p className="mt-4 text-muted-foreground whitespace-pre-line">
+            {c("sports.intro.body")}
           </p>
         </div>
       </section>

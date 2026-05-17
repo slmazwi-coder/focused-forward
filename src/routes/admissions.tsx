@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero } from "./about";
 import { Check } from "lucide-react";
+import { useContent } from "@/lib/content-context";
 
 export const Route = createFileRoute("/admissions")({
   head: () => ({
@@ -29,9 +30,10 @@ const reqs = [
 ];
 
 function Admissions() {
+  const c = useContent();
   return (
     <>
-      <PageHero eyebrow="Admissions" title="Become part of the Focused family." subtitle="Applications for 2026 are now open. Spaces are limited in each grade." />
+      <PageHero eyebrow="Admissions" title={c("admissions.hero.title")} subtitle={c("admissions.hero.subtitle")} />
 
       <section className="container mx-auto grid gap-6 px-4 py-16 md:grid-cols-2 lg:grid-cols-4">
         {steps.map((s) => (
@@ -58,15 +60,13 @@ function Admissions() {
           </ul>
         </div>
         <div className="rounded-2xl bg-primary p-8 text-primary-foreground">
-          <h2 className="font-display text-3xl">School fees</h2>
-          <p className="mt-4 text-primary-foreground/80">
-            As an independent school, Focused sets its own fee structure to fund the small
-            classes, experienced teachers and facilities our families expect. Current fee
-            schedules are provided on enquiry — please contact the office.
+          <h2 className="font-display text-3xl">{c("admissions.fees.heading")}</h2>
+          <p className="mt-4 text-primary-foreground/80 whitespace-pre-line">
+            {c("admissions.fees.body")}
           </p>
           <div className="mt-8 space-y-2 text-sm">
-            <div>📞 <span className="font-medium">039 737 3679</span></div>
-            <div>✉️ <span className="font-medium">admin@focused.co.za</span></div>
+            <div>📞 <span className="font-medium">{c("admissions.fees.phone")}</span></div>
+            <div>✉️ <span className="font-medium">{c("admissions.fees.email")}</span></div>
           </div>
           <Link to="/contact" className="mt-8 inline-flex rounded-md bg-gold px-5 py-3 text-sm font-semibold text-gold-foreground hover:brightness-95">
             Contact admissions
