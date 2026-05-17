@@ -42,7 +42,10 @@ export function SiteFooter() {
       <div className="border-t border-primary-foreground/15">
         <div className="container mx-auto flex flex-col items-center justify-between gap-2 px-4 py-5 text-xs text-primary-foreground/60 md:flex-row">
           <span>© {new Date().getFullYear()} Focused Combined School. EMIS 200501589 · Exam Centre 4252012.</span>
-          <span>Principal: Mr LLJ Van Rooyen</span>
+          <span className="flex items-center gap-3">
+            <span>Principal: Mr LLJ Van Rooyen</span>
+            <Link to="/admin" className="text-primary-foreground/40 hover:text-gold">Admin</Link>
+          </span>
         </div>
       </div>
     </footer>
