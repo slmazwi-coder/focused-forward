@@ -88,3 +88,8 @@
 .bg-band {
   background: linear-gradient(90deg, var(--primary) 0%, var(--primary) 33%, var(--gold) 33%, var(--gold) 66%, var(--crimson) 66%);
 }
+.container {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 1200px;
+}
